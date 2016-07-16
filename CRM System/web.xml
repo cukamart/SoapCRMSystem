@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+        
+    <servlet>
+       <servlet-name>Dispatcher</servlet-name>
+       <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+       <load-on-startup>1</load-on-startup>
+    </servlet>
+  
+    <servlet-mapping>
+       <servlet-name>Dispatcher</servlet-name>
+       <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+	<!-- Naloaduje beany deklarovane v remoting-server.xml hned po spusteni aplikacie
+	     nacita aj do dispatcher servletu aj do WSSpringServletu --> 
+   <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:remoting-server.xml</param-value>
+   </context-param>
+   <listener>
+     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+   </listener>
+     
+   <servlet>
+        <servlet-name>webservice</servlet-name>
+        <servlet-class>
+        	com.sun.xml.ws.transport.http.servlet.WSSpringServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>webservice</servlet-name>
+        <url-pattern>/webservice</url-pattern>
+    </servlet-mapping>
+</web-app>

@@ -1,0 +1,3 @@
+JARs have been removed to save space.
+
+You will find the jars in the starting workspace, but note that many chapters require extra jars (from Additional Jars folder). See the videos for information on which JARs are needed.

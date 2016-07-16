@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.virtualpairprogrammers.com/crm" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:tns="http://www.virtualpairprogrammers.com/crm">
+	
+	<xs:element name="getCustomerByIdRequest">
+  	   <xs:complexType>
+  	   	  <xs:sequence>
+	      	<xs:element name="id" type="tns:customerIdType"/>
+	      </xs:sequence>
+	   </xs:complexType>		
+	</xs:element>
+	
+	<xs:element name="getCustomerByIdResponse">
+		<xs:complexType>
+  	   	  <xs:sequence>	
+			<xs:element name="customer" type="tns:customer"/>
+		  </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    
+    <xs:complexType name="customer">
+    	<xs:sequence>
+    		<xs:element name="customerId" type="tns:customerIdType"></xs:element>
+    		<xs:element name="companyName" type="xs:string"></xs:element>    		
+    		<xs:element name="email" type="xs:string" ></xs:element>
+   			<xs:element name="notes" type="xs:string"  minOccurs="0" maxOccurs="1"></xs:element>
+   			<xs:element name="phone" type="xs:string"  minOccurs="0" maxOccurs="1"/>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="customerIdType">
+    	<xs:restriction base="xs:string">
+    		<xs:length value="5"></xs:length>
+    		<xs:pattern value="[0-9]+"></xs:pattern>
+    	</xs:restriction>
+    </xs:simpleType>
+</xs:schema>
